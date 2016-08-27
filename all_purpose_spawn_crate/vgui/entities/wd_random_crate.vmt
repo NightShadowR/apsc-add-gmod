@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "vgui/entities/wd_random_crate"
+	"$translucent" 1
+}
