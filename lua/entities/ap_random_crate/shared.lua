@@ -1,3 +1,22 @@
+/*---------------------------------------------------------
+	Name: Config
+
+	Description: Edit the weapons that can be in the create.
+---------------------------------------------------------*/
+
+local APSCweapons = {
+
+	"weapon_physgun",
+	"gmod_tool"
+
+}
+
+/*---------------------------------------------------------
+	Name: Code
+
+	Description: Do NOT edit below.
+---------------------------------------------------------*/
+
 ENT.Type 		= "anim"
 ENT.Base 		= "base_anim"
 ENT.PrintName		= "AP Random Item crate"
@@ -28,7 +47,7 @@ if SERVER then
 	end
 
 	/*---------------------------------------------------------
-	   Name: Initialize
+		Name: Initialize
 	---------------------------------------------------------*/
 
 	function ENT:Initialize()
@@ -56,9 +75,8 @@ if SERVER then
 		self.Entity:SetUseType(SIMPLE_USE)
 	end
 
-
 	/*---------------------------------------------------------
-	   Name: PhysicsCollide
+		Name: PhysicsCollide
 	---------------------------------------------------------*/
 
 	function ENT:PhysicsCollide(data, physobj)
@@ -68,27 +86,18 @@ if SERVER then
 			self.Entity:EmitSound(Sound("Wood.ImpactHard"))
 
 		end
+
 	end
 
 	/*---------------------------------------------------------
-	   Name: Use
+		Name: Use
 	---------------------------------------------------------*/
 
 	function ENT:Use(activator, caller)
 		
 		if (activator:IsPlayer()) and not self.Planted then
-		
-			local weapons = {
 
-				"weapon_physgun",
-				"gmod_tool"
-
-			}
-
-			local r = math.random( 1, 6 );
-			local new_wep = weapons[r];
-
-			activator:Give(new_wep);
+			activator:Give(APSCweapons[math.random( 1, #APSCweapons )]);
 			self.Entity:Remove()
 
 		end
@@ -98,7 +107,7 @@ if SERVER then
 else
 
 	/*---------------------------------------------------------
-	   Name: Initialize
+		Name: Initialize
 	---------------------------------------------------------*/
 
 	function ENT:Initialize()
@@ -106,7 +115,7 @@ else
 	end
 
 	/*---------------------------------------------------------
-	   Name: DrawPre
+		Name: DrawPre
 	---------------------------------------------------------*/
 
 	function ENT:Draw()
